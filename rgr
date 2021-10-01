@@ -1,0 +1,16 @@
+
+
+def main():
+     a = chr(input())
+     if a == '*':
+        s1= input()
+        s2 = input()
+        print(s1 + s2)
+     else:
+        q =input()
+        e = int(input())
+        print(q * e)
+     
+
+if __name__ == '__main__':
+   main()
