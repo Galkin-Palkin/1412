@@ -1,0 +1,115 @@
+def long_multiply():
+    print("Введите первое число")
+    arr = list(map(int, input().split()))
+    print("Введите второе число")
+    b = int(input())
+    res = []
+    next = [0]
+    for i in arr[-1::-1]:
+        a = i * b + next[0]
+        next.pop(0)
+        res.append(a % 10)
+        a //= 10
+        ar = list(map(int, str(a)[-1::-1]))
+        for i in range(ar.__len__()):
+            if i >= next.__len__():
+                next.append(0)
+            next[i] += ar[i]
+    for i in next:
+        if i != 0:
+            res.append(i)
+    print("".join(map(str, res[-1::-1])))
+
+def strSimple():
+    print("Введите знак:")
+    a = chr(input())
+    if a == '*':
+        s1 = input()
+        s2 = input()
+        print(s1 + s2)
+    else:
+        q = input()
+        e = int(input())
+        print(q * e)
+
+
+def decToBin(num):
+    res = ''
+
+    while num != 0:
+        res += chr(48 + num % 2);
+        num //= 2
+
+    return res[::-1]
+
+def decToHex(num):
+
+    res = ''
+
+    while num != 0:
+        res += chr(48 + (num % 16) + (num % 16 > 9) * 7)
+        num //= 16
+
+    return res[::-1]
+
+def decToOct(num):
+    res = ''
+
+    while num != 0:
+        res += chr(48 + num % 8);
+        num //= 8
+
+    return res[::-1]
+
+
+def menu_logic():
+    print("1.Перевод 10СИ -> 2СИ")
+    print("2.Перевод 10СИ -> 16СИ")
+    print("3.Перевод 10СИ -> 8СИ")
+    print("4. Длинная арифметика")
+    print("5. Калькулятор строк")
+    action = int(input())
+    num = int(input())
+    if action == 1:
+        #print("dec2bin_op")
+        num = decToBin(num)
+    elif action == 2:
+        #print("dec2hex_op")
+        num = decToHex(num)
+    elif action == 3:
+        #print("dec2oct_op")
+        num = decToOct(num)
+    elif action == 4:
+        long_multiply()
+    elif action == 5:
+        strSimple()
+
+    print(num)
+
+
+def check_brackets():
+    queue = []
+    print("Введите строку с формулой:")
+    str = input()
+    queue.append(str[0])
+    i = 1
+    while i < len(str):
+        if str[i] == "(":
+            queue.append(str[i])
+            i += 1
+            continue
+        if str[i] == ")" and queue[len(queue) - 1] == "(":
+            del queue[len(queue) - 1]
+            i += 1
+            continue
+    if len(queue):
+        print("НЕТ")
+    else:
+        print("ДА")
+
+
+def main():
+    menu_logic()
+
+if __name__ == "__main__":
+    main()
