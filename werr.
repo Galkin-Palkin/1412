@@ -1,0 +1,25 @@
+def long_multiply():
+    print("Введите первоге число")
+    arr = list(map(int, input().split()))
+    print("Введите второе число")
+    b = int(input())
+    res = []
+    next = [0]
+    for i in arr[-1::-1]:
+        a = i * b + next[0]
+        next.pop(0)
+        res.append(a % 10)
+        a //= 10
+        ar = list(map(int, str(a)[-1::-1]))
+        for i in range(ar.__len__()):
+            if i >= next.__len__():
+                next.append(0)
+            next[i] += ar[i]
+    for i in next:
+        if i != 0:
+            res.append(i)
+    print("".join(map(str, res[-1::-1])))
+
+
+if __name__ == "__main__":
+    long_multiply()
