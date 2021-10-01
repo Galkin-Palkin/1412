@@ -1,0 +1,27 @@
+def decToBin(num):
+    res = ''
+
+    while num != 0:
+        res += chr(48 + num % 2);
+        num //= 2
+
+    return res
+
+def decToHex(num):
+
+    res = ''
+
+    while num != 0:
+        res += chr(48 + (num % 16) + (num % 16 > 9) * 7)
+        num //= 16
+
+    return res
+
+def decToOct(num):
+    res = ''
+
+    while num != 0:
+        res += chr(48 + num % 8);
+        num //= 8
+
+    return res
